@@ -1,0 +1,116 @@
+<div class="row">
+    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registro Admin</h3>
+    <div class=" col-md-6 mb-3 divImg">
+    <button *ngIf="botonCambiar"  (click)="CambiarRegistro()" class="botonImg"><img src="../../../assets/changes.png" id="logo"></button>
+    </div>
+  </div>
+  <form lass="needs-validation" [formGroup]="formValidaciones" required>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+          <label for="firstName">Nombre</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" placeholder="" value="" required>
+          <small class="invalid"
+              *ngIf="formValidaciones.controls['firstName'].errors?.['required'] && formValidaciones.controls['firstName'].touched">
+              Nombre obligatorio!
+          </small>
+          <small class="invalid"
+              *ngIf="formValidaciones.controls['firstName'].errors?.['pattern'] && formValidaciones.controls['firstName'].touched">
+              Nombre inválido
+          </small>
+      </div>
+      <div class="col-md-6 mb-3">
+          <label for="lastName">Apellido</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName"
+              placeholder="" value="" required>
+          <small class="invalid"
+              *ngIf="formValidaciones.controls['lastName'].errors?.['required'] && formValidaciones.controls['lastName'].touched">
+             Apellido obligatorio!
+          </small>
+          <small class="invalid"
+              *ngIf="formValidaciones.controls['lastName'].errors?.['pattern'] && formValidaciones.controls['lastName'].touched">
+              Apellido inválido
+          </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="edad">Edad</label>
+        <input type="edad" class="form-control" id="edad" name="edad" formControlName="edad">
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['edad'].errors?.['required'] && formValidaciones.controls['edad'].touched">
+            Edad obligatoria!
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['edad'].errors?.['pattern'] && formValidaciones.controls['edad'].touched">
+            Edad inválida
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['edad'].errors?.['min'] && formValidaciones.controls['edad'].touched">
+            Muy joven!
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['edad'].errors?.['max'] && formValidaciones.controls['edad'].touched">
+            Muy viejo!
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="numTelefono">DNI</label>
+        <input type="text" class="form-control" id="dni" name="dni" formControlName="dni">
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['dni'].errors?.['required'] && formValidaciones.controls['dni'].touched">
+            DNI obligatorio!
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['dni'].errors?.['pattern'] && formValidaciones.controls['dni'].touched">
+            DNI inválido
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['dni'].errors?.['maxlength'] && formValidaciones.controls['dni'].touched">
+            DNI largo
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="edad">Mail</label>
+        <input type="text" class="form-control" id="mail" name="mail" formControlName="mail">
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['mail'].errors?.['required'] && formValidaciones.controls['mail'].touched">
+            Mail obligatorio!
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['mail'].errors?.['email'] && formValidaciones.controls['mail'].touched">
+            Mail inválido
+        </small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="edad">Contraseña</label>
+        <input type="password" class="form-control" id="contrasenia" name="contrasenia" formControlName="contrasenia" [(ngModel)] = "contrasenia">
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['contrasenia'].errors?.['required'] && formValidaciones.controls['contrasenia'].touched">
+            Contraseña obligatoria!
+        </small>
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['contrasenia'].errors?.['econtrasenia'] && formValidaciones.controls['contrasenia'].touched">
+            Contraseña inválida
+        </small>
+      </div>
+    </div>
+      <div class="col-md-6 mb-3">
+        <input type="file" class="" formControlName="img1" accept=".png, .jpg, .jpeg" (change)="CargarImagen1($event)">
+        <!--
+        <label for="edad">Contraseña</label>
+        <input type="password" class="form-control" id="contrasenia" name="contrasenia" formControlName="confContrasenia" [(ngModel)] = "confContrasenia">
+        <small class="invalid"
+            *ngIf="formValidaciones.controls['confContrasenia'].errors?.['required'] && formValidaciones.controls['confContrasenia'].touched">
+            Contraseña obligatorio!
+        </small>
+        <small class="invalid" *ngIf="formValidaciones.get('confContrasenia').errors?.ValidarContrasenia">
+            Contraseña inválida
+        </small>
+      -->
+      </div>
+      <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit"
+    [disabled]="formValidaciones.invalid" (click)="CargarAdmin()">Guardar</button>
+  </form>

@@ -1,0 +1,123 @@
+<section class="gradient-custom main">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="card shadow-2-strong card-registration padding">
+                <div class="card-body">
+                    <div class="tittle">
+                        <h3>Pacientes
+                            <button  class="botonImg">
+                                <img src="../../../assets/abajo.png" id="logo" (click)="MostrarTabla('pacientes', true)" *ngIf="!tablaPacienteView">
+                                <img src="../../../assets/arriba.png" id="logo" (click)="MostrarTabla('pacientes', false)" *ngIf="tablaPacienteView">
+                            </button>
+                            <button  class="botonImg">
+                                <img src="../../../assets/mas.png" id="logo" (click)="MostrarForm('paciente')">
+                            </button>
+                        </h3>
+                    </div>
+                    <table class="table table-hover" *ngIf="tablaPacienteView">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Edad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let paciente of pacientes">
+                                <th scope="row">{{paciente.nombre}} {{paciente.apellido}}</th>
+                                <td>{{paciente.dni}}</td>
+                                <td>{{paciente.mail}}</td>
+                                <td>{{paciente.edad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card shadow-2-strong card-registration padding">
+                <div class="card-body">
+                    <div class="tittle">
+                        <h3>Especialistas
+                            <button  class="botonImg">
+                                <img src="../../../assets/abajo.png" id="logo" (click)="MostrarTabla('especialistas', true)" *ngIf="!tablaEspecialistaView">
+                                <img src="../../../assets/arriba.png" id="logo" (click)="MostrarTabla('especialistas', false)" *ngIf="tablaEspecialistaView">
+                            </button>
+                            <button  class="botonImg">
+                                <img src="../../../assets/mas.png" id="logo"  (click)="MostrarForm('especialista')">
+                            </button>
+                        </h3>
+                    </div>
+                    <table class="table table-hover" *ngIf="tablaEspecialistaView">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Habilitacion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let especialista of especialistas">
+                            <th scope="row">{{especialista.nombre}} {{especialista.apellido}}</th>
+                            <td>{{especialista.dni}}</td>
+                            <td>{{especialista.mail}}</td>
+                            <td>{{especialista.especialidad}}</td>
+                            <td *ngIf="especialista.activado"><button (click)="ActualizarHabilitacion(especialista.mail, false)">Deshabilitar</button></td>
+                            <td *ngIf="!especialista.activado"><button (click)="ActualizarHabilitacion(especialista.mail, true)">Habilitar</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card shadow-2-strong card-registration padding">
+                <div class="card-body">
+                    <div class="tittle">
+                        <h3>Administradores
+                            <button  class="botonImg">
+                                <img src="../../../assets/abajo.png" id="logo" (click)="MostrarTabla('admins', true)" *ngIf="!tablaAdminView">
+                                <img src="../../../assets/arriba.png" id="logo" (click)="MostrarTabla('admins', false)" *ngIf="tablaAdminView">
+                            </button>
+                            <button  class="botonImg">
+                                <img src="../../../assets/mas.png" id="logo"  (click)="MostrarForm('admin')">
+                            </button>
+                        </h3>
+                    </div>
+                    <table class="table table-hover" *ngIf="tablaAdminView">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Edad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let admin of admins">
+                            <th scope="row">{{admin.nombre}} {{admin.apellido}}</th>
+                            <td>{{admin.dni}}</td>
+                            <td>{{admin.mail}}</td>
+                            <td>{{admin.edad}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card shadow-2-strong card-registration padding" *ngIf="formView">
+                <div class="card-body">
+                    <h4>
+                        <button  class="botonImg">
+                            <img src="../../../assets/arriba.png" id="logo" (click)="MostrarTabla('especialistas', false)" *ngIf="tablaEspecialistaView">
+                        </button>
+                    </h4>
+                    <app-registro-especialista *ngIf="formEspecialistaView" [botonCambiar]=false (FormularioCargado)="CerrarForm()"></app-registro-especialista>
+                    <app-registro-paciente *ngIf="formPacienteView" [botonCambiar]=false (FormularioCargado)="CerrarForm()"></app-registro-paciente>
+                    <app-registro-admin *ngIf="formAdminView" [botonCambiar]=false (FormularioCargado)="CerrarForm()"></app-registro-admin>
+                </div>
+            </div>
+      </div>
+    </div>
+  </section>

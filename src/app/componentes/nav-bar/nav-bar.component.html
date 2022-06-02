@@ -1,0 +1,8 @@
+<ul>
+    <li style="float:right" class="liLogo"><a class="aLogo" routerLink = ''><img  id="logo" src="../../../assets/AC.png"></a></li>
+    <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink ='login'>Iniciar Sesion</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink ='registro'>Registrarse</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink" (click)="cerrarSesion()" routerLink =''>Cerrar Sesion</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true && authService.usuario.tipo == 'admin'"  class="liClass"><a class="textLink"  routerLink ='usuarios'>Usuarios</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true" id="email"><a id="aEmail">{{authService.usuario.mail}}</a></li>
+</ul>

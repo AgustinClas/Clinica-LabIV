@@ -1,0 +1,32 @@
+#logo{
+    max-width: 80%;
+    max-height: 80%;
+    padding-left: 5%;
+}
+
+.divImg{
+    width: fit-content;
+}
+
+.botonImg{
+    width: fit-content;
+    width: 30%;
+    background-color: #ff5757;
+    border-radius: 400px;
+    margin-left: 90%;
+    border-color: #ff1616;
+}
+
+.botonImg:hover{
+    background-color: #ff1616;
+}
+
+.btn{
+    background-color: #ff1616;
+    border-color: #ff1616;
+}
+
+.btn:disabled{
+    background-color: #ff5757;
+    border-color: #ff1616;
+}
