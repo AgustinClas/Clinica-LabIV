@@ -16,6 +16,9 @@ import { VerificacionMailComponent } from './componentes/verificacion-mail/verif
 import { UsuariosComponent } from './paginas/usuarios/usuarios.component';
 import { RegistroAdminComponent } from './componentes/registro-admin/registro-admin.component';
 import { HomeComponent } from './paginas/home/home.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
+import { CaptchaComponent } from './componentes/captcha/captcha.component';
+import { MisTurnosUsuarioComponent } from './paginas/mis-turnos-usuario/mis-turnos-usuario.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { HomeComponent } from './paginas/home/home.component';
     UsuariosComponent,
     RegistroAdminComponent,
     HomeComponent,
+    PerfilComponent,
+    CaptchaComponent,
+    MisTurnosUsuarioComponent,
   ],
   imports: [
     BrowserModule,

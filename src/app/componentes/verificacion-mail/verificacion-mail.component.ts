@@ -15,8 +15,8 @@ export class VerificacionMailComponent implements OnInit {
   }
 
   EnviarMail(){
-    this.auth.sendVerificationEmail();
-    console.log("!!!!!!!!");
+
+    this.auth.sendVerificationEmail(this.auth.email);
   }
 
 }

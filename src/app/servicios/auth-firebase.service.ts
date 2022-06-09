@@ -12,12 +12,15 @@ export class AuthFirebaseService {
   
   authenticated$ = new BehaviorSubject(false);
   usuario:any;
+  email:any;
 
   constructor(private auth:AngularFireAuth, private dataStorage:DataStorageServiceService) { 
     
   }
 
   public async authenticate(usr?:string) {
+
+console.log(usr);
     if(usr)
     await this.dataStorage.GetUsuario(usr).then(e => e.get().pipe().subscribe(res => {
       this.usuario = res.data();
@@ -47,13 +50,14 @@ export class AuthFirebaseService {
   }
 
 
-  async sendVerificationEmail(): Promise<void> {
+  async sendVerificationEmail(mail:string): Promise<void> {
 
-    let usr = await this.auth.currentUser
-    if(usr != null){
-      console.log(usr)
-      usr.sendEmailVerification();
+    const setting = {
+      url: 'http://localhost:4200/home',
+      handleCodeInApp:true
     }
+    console.log(mail);
+    this.auth.sendSignInLinkToEmail(mail, setting);
   }
 
   obtenerUsuarioLogueado(){

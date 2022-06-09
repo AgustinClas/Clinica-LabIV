@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   password:string;
   errorInicio:boolean;
   cargando=false;
-
+  captchaMostrado:boolean = false;
   loginUsuario:Usuario = new Usuario();
 
   constructor(public ruteo:Router, private authService:AuthFirebaseService, private dataStorage:DataStorageServiceService) {
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
                 this.ruteo.navigateByUrl("Home");
                 this.authService.authenticateState();
               }
-          }, 3000)
+          }, 5000)
         
         }}).catch(e => {this.errorInicio = true});
         
@@ -66,20 +66,38 @@ export class LoginComponent implements OnInit {
 
   iniciarSesionAutomaticamente(opcion:number){
     
+    switch(opcion){
 
-    if(opcion==1){ 
-      this.loginUsuario.email = "agustiinnclas@gmail.com";
-      this.loginUsuario.password = "123456";
+      case 1: 
+        this.loginUsuario.email = "agustiinnclas@gmail.com";
+        this.loginUsuario.password = "123456";
+        break;
+      case 2: 
+        this.loginUsuario.email = "lapulguitamessi@gmail.com";
+        this.loginUsuario.password = "123456";
+        break;
+      case 3: 
+        this.loginUsuario.email = "carlos-apache@gmail.con";
+        this.loginUsuario.password = "123456";
+        break;
+      case 4: 
+        this.loginUsuario.email = "favaloro@acclinica.com";
+        this.loginUsuario.password = "123456";
+        break;
+      case 5: 
+        this.loginUsuario.email = "usuario5@anonimo.com";
+        this.loginUsuario.password = "123456";
+        break;
+      case 6: 
+        this.loginUsuario.email = "admin@acclinica.com";
+        this.loginUsuario.password = "123456"
+        break;
     }
-    else if(opcion==2){
-      this.loginUsuario.email = "favaloro@acclinica.com";
-      this.loginUsuario.password = "123456";
-    }
-    else{
-      this.loginUsuario.email = "admin@acclinica.com";
-      this.loginUsuario.password = "123456"
-    }
+
   
   }
 
+  MostrarCaptcha(opcion:boolean){
+    this.captchaMostrado = opcion;
+  }
 }

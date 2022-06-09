@@ -1,21 +1,32 @@
 <section class="gradient-custom main">
     <div class="container">
-      <div class="row justify-content-center align-items-center">
-          <div class="card shadow-2-strong card-registration">
-            <div class="card-body p-4 p-md-5"  *ngIf="!formCargado; else verificarEmail">
-                <app-registro-especialista *ngIf="opcion; else pacienteRegistro" 
-                  (CambiarRegistroEvento)="CambiarRegistro(0)" (FormularioCargado)="CambiarPantalla()">
-                </app-registro-especialista>
-                <ng-template #pacienteRegistro><app-registro-paciente 
-                  (CambiarRegistroEvento)="CambiarRegistro(1)" (FormularioCargado)="CambiarPantalla()">
-                </app-registro-paciente></ng-template>
-            </div>
-              <ng-template #verificarEmail>
-                <div class="card-body p-4 p-md-5">
-                  <app-verificacion-mail></app-verificacion-mail>
-                </div>
-              </ng-template>
-          </div>
-      </div>
+      <div class="row" *ngIf="opcion == 0; else forms">
+        <button class="boton" (click)="MostrarForm(false)">
+            <img  id="logo" src="../../../assets/paciente.png">
+        </button>
+        <button class="boton" (click)="MostrarForm(true)">
+            <img  id="logo" src="../../../assets/doctor.png">
+        </button> 
     </div>
-  </section>
+    <ng-template #forms>
+      <div class="row justify-content-center align-items-center">
+        <div class="card shadow-2-strong card-registration">
+          <div class="card-body p-4 p-md-5"  *ngIf="!formCargado; else verificarEmail">
+            <app-registro-especialista *ngIf="opcion == 1; else pacienteRegistro" 
+              (FormularioCargado)="CargarEspecialista($event)">
+            </app-registro-especialista>
+            <ng-template #pacienteRegistro>
+              <app-registro-paciente 
+                (FormularioCargado)="CargarPaciente($event)">
+              </app-registro-paciente></ng-template>
+          </div>
+          <ng-template #verificarEmail>
+            <div class="card-body p-4 p-md-5">
+              <app-captcha  (CaptchaAprobado)="Registrar()" (CaptchaDenegado)="MostrarCaptcha(false)"></app-captcha>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>

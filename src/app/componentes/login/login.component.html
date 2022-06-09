@@ -1,23 +1,68 @@
-<div class="main">
-    <div class="row"> 
-        <div class="colm-form">
+<div class="parent main">
+    <div class="div1">
+        <div class="form-container">
+            <div class="divButtonsGroup">
+                <div class="divUser1">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(1)">
+                        <img  id="userImg" src="../../../assets/paciente.png">
+                    </button>
+                </div>
+                <div class="divUser2">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(2)">                  
+                        <img  id="userImg" src="../../../assets/paciente.png">
+                    </button>
+                </div>
+                <div class="divUser3">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(3)">
+                        <img  id="userImg" src="../../../assets/paciente.png">
+                    </button>
+                </div>
+                <div class="divUser4">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(4)">
+                        <img  id="userImg" src="../../../assets/doctor.png">
+                    </button>
+                </div>
+                <div class="divUser5">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(5)">
+                        <img  id="userImg" src="../../../assets/doctor.png">
+                    </button>
+                </div>
+                <div class="divUser6">
+                    <button class="btnUser" (click)="iniciarSesionAutomaticamente(6)">
+                        <img  id="userImg" src="../../../assets/administracion.png">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="div2">
+            <div class = "colm-form">
             <div class="form-container">
                 <app-loading *ngIf="cargando;else formLogin"></app-loading>
                 <ng-template #formLogin>
-                    <h2>Iniciar Sesión</h2>
-                    <input type="text" id= "email" placeholder="Email" [(ngModel)] = "loginUsuario.email" >
-                    <input type="password" placeholder="Contraseña" [(ngModel)] = "loginUsuario.password">
-                    <input type="button" class="btn-login" (click)="ingresar()" value="Iniciar Sesion" >
-                    <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(1)" value="Iniciar Sesion Usuario">                
-                    <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(2)" value="Iniciar Sesion Especialista">                
-                    <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(3)" value="Iniciar Sesion Admin">                
+                    <div *ngIf="!captchaMostrado; else captcha">
+                        <h2>Iniciar Sesión</h2>
+                        <input type="text" id= "email" placeholder="Email" [(ngModel)] = "loginUsuario.email" >
+                        <input type="password" placeholder="Contraseña" [(ngModel)] = "loginUsuario.password">
+                        <input type="button" class="btn-login" (click)="MostrarCaptcha(true)" value="Iniciar Sesion" >
+                        <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(1)" value="Iniciar Sesion Usuario">                
+                        <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(5)" value="Iniciar Sesion Especialista">                
+                        <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(6)" value="Iniciar Sesion Admin">                
+                    </div>
+                    <ng-template #captcha>
+                        <h4>Seleccione los números pares</h4>
+                        <app-captcha  (CaptchaAprobado)="ingresar()" (CaptchaDenegado)="MostrarCaptcha(false)"></app-captcha>
+                    </ng-template>
                 </ng-template>
             </div>
         </div>
-        <div class="form-container">
-            <img  id="logo" src="../../../assets/AC.png">
         </div>
-    </div>
+        <div class="div3" >
+
+            <div class="form-container">
+                <img  id="logo" src="../../../assets/AC.png">
+            </div>
+        </div>
 </div>
     
     

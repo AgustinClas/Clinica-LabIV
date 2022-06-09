@@ -1,0 +1,27 @@
+<div class="parent">
+    <div class="div1">
+        <h1>aaaa</h1>
+    </div>
+    <div class="div2">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Paciente</th>
+                <th scope="col">Especialista</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let turno of turnos">
+                <td>{{turno.paciente}}</td>
+                <td>{{turno.medico}}</td>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.fecha | date}}</td>
+                <td>WAIT!</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

@@ -71,15 +71,8 @@ export class RegistroPacienteComponent implements OnInit {
     this.paciente.obraSocial = this.formValidaciones.controls['obraSocial'].value;
 
     this.registrar();
-    //this.FormularioCargado.emit(this.paciente);
   }
 
-  /* ValidarContrasenia ():{[key: string]: boolean} | null {
-    if(this.confContrasenia == this.contrasenia){
-      return {'ValidarContrasenia': true}
-    }
-    return null;
-  }; */
 
   CambiarRegistro(){
     this.CambiarRegistroEvento.emit();
@@ -107,14 +100,16 @@ export class RegistroPacienteComponent implements OnInit {
   }
   
   async registrar(){
+    
+    this.FormularioCargado.emit(this.paciente);
 
-    this.authService.registrar(this.paciente.mail, this.paciente.contrasenia).then(() => {
+    /* this.authService.registrar(this.paciente.mail, this.paciente.contrasenia).then(() => {
       this.dataStorage.GuardarPaciente(this.paciente)
-      this.FormularioCargado.emit();
+      this.authService.email = this.paciente.mail;
     }).catch(e => {
       console.log("Error al iniciar usuario" + e);
       //this.errorRegistro = true;
-    })
+    }) */
 
   }
 }

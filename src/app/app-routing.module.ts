@@ -7,6 +7,8 @@ import { UsuarioDeslogueadoGuard } from './guards/usuario-deslogueado.guard';
 import { UsuarioGuard } from './guards/usuario.guard';
 import { BienvenidaComponent } from './paginas/bienvenida/bienvenida.component';
 import { HomeComponent } from './paginas/home/home.component';
+import { MisTurnosUsuarioComponent } from './paginas/mis-turnos-usuario/mis-turnos-usuario.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { RegistroComponent } from './paginas/registro/registro.component';
 import { UsuariosComponent } from './paginas/usuarios/usuarios.component';
 
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: 'verificarMail', component:VerificacionMailComponent},
   {path: 'usuarios', component:UsuariosComponent, canActivate:[AdminGuard]},
   {path: 'Home', component:HomeComponent, canActivate:[UsuarioGuard]},
+  {path: 'Perfil', component: PerfilComponent},
+  {path: 'MisTurnosPaciente', component:MisTurnosUsuarioComponent},
   {path: '*', component:LoginComponent},
 ];
 
@@ -26,6 +30,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-//#FF1616 Rojo principal
-//#FF5757 Rojo secundario
-//#737373 Gris

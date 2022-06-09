@@ -101,25 +101,7 @@ export class RegistroEspecialistaComponent implements OnInit {
 
   async registrar(){
 
-    this.authService.registrar(this.especialista.mail, this.especialista.contrasenia).then(() => {
-
-      this.dataStorage.GuardarEspecialista(this.especialista);
-
-      let flag = true;
-
-      //Verifico si la especialidad se encuentra cargada en la base de datos
-      this.especialidades.forEach((esp:any) => {
-        if(esp.especialidad == this.especialista.especialidad ) {flag = false; stop;}
-      });
-      //Si no se encuentra cargada, la cargo en la base de datos
-      if(flag) this.dataStorage.GuardarEspecialidad(this.especialista.especialidad)
-
-      this.FormularioCargado.emit();
-      //this.authService.EnviarEmail();
-    }).catch(e => {
-      console.log("Error al iniciar usuario" + e);
-      //this.errorRegistro = true;
-    })
+    this.FormularioCargado.emit(this.especialista);
 
   }
 }

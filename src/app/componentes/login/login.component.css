@@ -31,15 +31,24 @@
 
 
 .colm-form {
-    flex: 0 0 40%;
     text-align: center;
     max-height: 80%;
+    margin: auto;
+    justify-self: center;
 }
 
 #logo{
-    max-height: 100%;
+    max-height: 60vh;
     width: 100%;
+    height: 100%;
 }
+
+#userImg{
+    max-height: 22vh;
+    width: 80%;
+    height: 100%;
+}
+
 
 .colm-logo h2 {
     font: 26px;
@@ -57,11 +66,10 @@
     max-width: 500px;
 }
 
-.colm-form .form-container input, .colm-form .form-container .btn-login {
+.colm-form .form-container input,  .form-container .btn-login {
     width: 100%;
     margin: 5px 0;
     height: px;
-    vertical-align: middle;
     font-size: 16px;
 }
 
@@ -90,8 +98,8 @@
     font-weight: 700;
 }
 
-.colm-form .form-container a {
-    display: block;
+.form-container a {
+  display: block;
     color: rgb(23, 9, 82);
     font-size: 14px;
     text-decoration: none;
@@ -143,4 +151,58 @@
     font-style: italic;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.3fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+.div1 { 
+    grid-area: 1 / 1 / 2 / 3; 
+
+
+}
+.div2 { 
+    grid-area: 2 / 1 / 3 / 2; 
+    margin: auto;
+    margin-top: 10px;
+
+}
+.div3 { 
+    grid-area: 2 / 2 / 3 / 3; 
+    margin: auto;
+    margin-top: 10px;
+}
+
+.colm-form{
+    width: 100%;
+}
+
+.divButtonsGroup {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 0.3fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+    
+.divButton{ grid-area: 1 / 1 / 2 / 7;}
+
+.divUser1 { grid-area: 1 / 1 / 2 / 2;  margin: auto; margin-top: 10px;}
+.divUser2 { grid-area: 1 / 2 / 2 / 3;  margin: auto; margin-top: 10px}
+.divUser3 { grid-area: 1 / 3 / 2 / 4;  margin: auto; margin-top: 10px}
+.divUser4 { grid-area: 1 / 4 / 2 / 5;  margin: auto; margin-top: 10px}
+.divUser5 { grid-area: 1 / 5 / 2 / 6;  margin: auto; margin-top: 10px}
+.divUser6 { grid-area: 1 / 6 / 2 / 7;  margin: auto; margin-top: 10px}
+
+
+.btnUser{
+    border-color:#ff1616;
+    border-width: 5px;
+    border-radius: 10px;
+    background-color: #ffffff;
 }
