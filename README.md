@@ -10,7 +10,7 @@ https://clinica-labiv.web.app/
 
 Desde esta pantalla puedes navegar hacia el menu de login o registro
 
-<img src = "./src/assets/paginas/">
+<img src = "./src/assets/paginas/login">
 
 
 Desde esta pantalla puedes iniciar sesión. En la parte superior puedes elegir el usuario de prueba.
@@ -20,7 +20,7 @@ Desde esta pantalla puedes iniciar sesión. En la parte superior puedes elegir e
 
 Desde esta pantalla puedes elegir si registraras un paciente o un usuario, navegaras hacia una pantalla con estas opciones.
 
-<img src = "./src/assets/paginas/registro">
+<img src = "./src/assets/paginas/registro.png">
 
 
 En esta pantalla deberes ingresar los datos del paciente a registrar
