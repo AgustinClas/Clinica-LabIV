@@ -1,5 +1,7 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
+import * as XLSX from "xlsx"
 
 @Component({
   selector: 'app-usuarios',
@@ -11,6 +13,7 @@ export class UsuariosComponent implements OnInit {
   tablaPacienteView:boolean = false;
   tablaEspecialistaView:boolean = false;
   tablaAdminView:boolean = false;
+  historiasView:boolean = false;
 
   formView:boolean = false;
   formPacienteView:boolean = false;
@@ -22,6 +25,7 @@ export class UsuariosComponent implements OnInit {
   pacientes:any = [];
   especialistas:any = [];
   admins:any = [];
+  historias:any = [];
 
   constructor(private dataStorage:DataStorageServiceService) { }
 
@@ -46,7 +50,10 @@ export class UsuariosComponent implements OnInit {
 
   MostrarTabla(tabla:string, opcion:boolean){
 
-    if(tabla == "pacientes") this.tablaPacienteView = opcion;
+    if(tabla == "pacientes"){  
+      this.tablaPacienteView = opcion; 
+      if(!opcion) this.historiasView = false;
+    }
     else if(tabla == "especialistas") this.tablaEspecialistaView = opcion;
     else if(tabla == "admins") this.tablaAdminView = opcion;
   }
@@ -80,7 +87,41 @@ export class UsuariosComponent implements OnInit {
       this.formAdminView = false;
   }
 
+  DescargarXLSX(){
+
+    var data:any = [];
+
+    this.usuarios.forEach((element:any) => {
+      let user = {
+        "nombre": element.nombre, 
+        "apellido": element.apellido,
+        "mail": element.mail,
+        "dni": element.dni,
+        "edad": element.edad,
+        "tipo": element.tipo
+      }
+
+      data.push(user);
+    })
+
+    /* generate a worksheet */
+    var ws = XLSX.utils.json_to_sheet(data);
+  
+    /* add to workbook */
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Usuarios");
+  
+    /* write workbook and force a download */
+      XLSX.writeFile(wb, "Usuarios.xlsx");
+  }
+
   ActualizarHabilitacion(especialista:string, habilitacion:boolean){
     this.dataStorage.CambiarHabilitacion(especialista, habilitacion)
+  }
+
+  MostrarHistoriaClinica(mail:string){
+    this.historias = [];
+    this.dataStorage.GetHistoriasPorPaciente(mail, this.historias);
+    this.historiasView = true;
   }
 }

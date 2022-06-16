@@ -40,19 +40,15 @@
             <div class="form-container">
                 <app-loading *ngIf="cargando;else formLogin"></app-loading>
                 <ng-template #formLogin>
-                    <div *ngIf="!captchaMostrado; else captcha">
+                    <div>
                         <h2>Iniciar Sesión</h2>
                         <input type="text" id= "email" placeholder="Email" [(ngModel)] = "loginUsuario.email" >
                         <input type="password" placeholder="Contraseña" [(ngModel)] = "loginUsuario.password">
-                        <input type="button" class="btn-login" (click)="MostrarCaptcha(true)" value="Iniciar Sesion" >
+                        <input type="button" class="btn-login" (click)="ingresar()" value="Iniciar Sesion" >
                         <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(1)" value="Iniciar Sesion Usuario">                
                         <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(5)" value="Iniciar Sesion Especialista">                
                         <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(6)" value="Iniciar Sesion Admin">                
                     </div>
-                    <ng-template #captcha>
-                        <h4>Seleccione los números pares</h4>
-                        <app-captcha  (CaptchaAprobado)="ingresar()" (CaptchaDenegado)="MostrarCaptcha(false)"></app-captcha>
-                    </ng-template>
                 </ng-template>
             </div>
         </div>

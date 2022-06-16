@@ -1,0 +1,14 @@
+<div class="main">
+    <div class="eleccion" *ngIf="usuarioElegido">
+        <button class="btnEspEleccion" (click)="QuitarUsuarioElegido()">{{usuarioElegido}}</button>
+    </div>
+    <app-historia-clinica [historias]="historiasParaMostrar" *ngIf="usuarioElegido"></app-historia-clinica>
+    <div class="cuadricula" *ngIf="!usuarioElegido">
+        <div class="divEleccion" *ngFor="let usuario of usuarios">
+            <button class = "botonEsp" (click)="ElegirUsuario(usuario)">
+                {{usuario}}
+            </button>
+        </div>
+    </div>
+    <div class="cuadricula" *ngIf="usuarioElegido">
+</div> 

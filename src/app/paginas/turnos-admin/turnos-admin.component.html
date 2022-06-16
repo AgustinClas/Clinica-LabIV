@@ -1,0 +1,58 @@
+<section class="gradient-custom main">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div>
+                <div>
+                    <div class="input-group">
+                        <div id="search-autocomplete" class="form-outline">
+                            <input type="search" id="form1" class="form-control"[(ngModel)]="busqueda" />
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="BuscarTurnos()">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="card shadow-2-strong card-registration padding">
+                    <div class="card-body">
+                        <div class="parent">
+                            <div class="div1">
+                                <h1>Mis Turnos</h1>
+                            </div>
+                            <div class="div2">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Paciente</th>
+                                            <th scope ="col">Especialista</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Hora</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let turno of turnosParaMostrar">
+                                            <td>{{turno.paciente}}</td>
+                                            <td>{{turno.especialista}}</td>
+                                            <td>{{turno.especialidad}}</td>
+                                            <td>{{turno.fecha | date:"dd-MM-yy"}}</td>
+                                            <td>{{turno.fecha | date:"HH:mm"}}</td>    
+                                            <td>{{turno.estado}}</td>  
+                                            <td *ngIf="turno.estado != 'finalizado' && turno.estado != 'canceladoPac' && turno.estado != 'canceladoEsp' && turno.estado != 'canceladoAdm'"><button (click)="CancelarTurnoForm(turno)">Cancelar</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div *ngIf="CancelarForm" >
+                                Motivo de cancelacion
+                                <input type="text" [(ngModel)]="comentario">
+                                <button (click)="CancelarTurno()">Cancelar Turno</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

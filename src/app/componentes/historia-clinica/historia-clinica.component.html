@@ -1,0 +1,47 @@
+    <div class="container">
+        <h3> Historia Clinica</h3>
+        <div *ngFor="let historia of historias" class="order-md-1">
+            <div class="row">
+                <div class="col-md-6">
+                    <label><label class="campo">Paciente: </label> {{historia.paciente}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Especialista: </label> {{historia.especialista}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Especialidad: </label> {{historia.especialidad}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Fecha: </label> {{historia.fecha | date:"dd-MM-yy"}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><label class="campo">Altura: </label> {{historia.altura}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Peso: </label> {{historia.peso}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Temperatura: </label> {{historia.temperatura}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">Presión: </label> {{historia.presion}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><label class="campo">{{historia.campo1.clave}} </label> {{historia.campo1.valor}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">{{historia.campo2.clave}} </label> {{historia.campo2.valor}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">{{historia.campo3.clave}} </label> {{historia.campo3.valor}}</label>
+                </div>
+                <div class="col-md-6">
+                    <label><label class="campo">{{historia.campo4.clave}} </label> {{historia.campo4.valor}}</label>
+                </div>
+            </div>
+        </div>
+    </div>

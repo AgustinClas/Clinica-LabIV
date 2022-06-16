@@ -25,6 +25,13 @@ export class RegistroEspecialistaComponent implements OnInit {
     "img1":"",
     "tipo": "especialista",
     "activado": false,
+    "diasAtencion":[
+      {"dia": "lunes", trabaja:true,entrada: "11", salida: "14", especialidad: ""},
+      {"dia": "martes", trabaja:true,entrada: "8", salida: "18", especialidad: ""},
+      {"dia": "miercoles", trabaja:true,entrada: "8", salida: "18", especialidad: ""},
+      {"dia": "jueves", trabaja:true,entrada: "8", salida: "18", especialidad: ""},
+      {"dia": "viernes", trabaja:true,entrada: "8", salida: "18", especialidad: ""},
+      {"dia": "sabado", trabaja:true,entrada: "8", salida: "18", especialidad: ""}]
   }
   contrasenia?:string;
   //confContrasenia?:string;
@@ -46,7 +53,7 @@ export class RegistroEspecialistaComponent implements OnInit {
         //'confContrasenia': ['', [Validators.required /*, this.ValidarContrasenia*/]],
         'especialidad':  ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
         'mail': ['', [Validators.required, Validators.email]],
-        'img1': ['', [Validators.required]],
+        'img1': ['', [Validators.required]]
       }
     );
   }
@@ -69,6 +76,10 @@ export class RegistroEspecialistaComponent implements OnInit {
     this.especialista.mail = this.formValidaciones.controls['mail'].value;
     this.especialista.contrasenia = this.formValidaciones.controls['contrasenia'].value;
     this.especialista.especialidad = this.formValidaciones.controls['especialidad'].value;
+
+    this.especialista.diasAtencion.forEach((element:any) => {
+      element.especialidad = this.especialista.especialidad;
+    });
 
     this.registrar();
     //this.dataStorage.GuardarEspecialista(this.especialista);

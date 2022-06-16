@@ -1,6 +1,9 @@
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, SnapshotOptions} from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage'
+import { timeStamp } from 'console';
+import { map, timestamp } from 'rxjs';
 
 
 
@@ -68,19 +71,22 @@ export class DataStorageServiceService {
       }
   }
 
+  GetEspecialistas(){
+    return this.db.collection('usuarios', ref => ref.where('tipo','==', 'especialista')).valueChanges();
+    //, ref => ref.where('tipo','==', 'especialista')
+  }
+
   GetEspecialidades(){
     return this.db.collection('especialidades').valueChanges();
   }
 
   GuardarEspecialidad(especialidad:string){
-    let esp = {"especialidad": especialidad}
+    let esp = {"especialidad": especialidad, imagen: "https://firebasestorage.googleapis.com/v0/b/clinica-labiv.appspot.com/o/especialidades%2Fdoctor.png?alt=media&token=bb5bf655-360d-471f-ab8a-3401dc966165"}
 
     this.db.collection('especialidades').add(esp).catch(e => console.log("error al cargar en la base"));
-
   }
 
   async GetUsuario(mail:string){
-    
     return await this.db.collection('usuarios').doc(mail);
   }
 
@@ -91,4 +97,114 @@ export class DataStorageServiceService {
   CambiarHabilitacion(mail:string, opcion:boolean){
     this.db.collection('usuarios').doc(mail).update({"activado": opcion});
   }
+
+  ActualizarDiasTrabajo(mail:string, dias:any){
+    this.db.collection('usuarios').doc(mail).update({"diasAtencion": dias});
+  }
+
+  GuardarTurno( turno : any ) {
+    this.db.collection('turnos').add(turno).catch( e => console.log("error al cargar en la base"));
+  }
+
+  GetTurnosAdmin(array:any){
+    this.db.collection('turnos').get().subscribe
+    (element => {
+
+      if(element.docs){
+        element.docs.forEach( (obj:any) => {
+
+          let aux:any = { ...(obj.data() as Object),
+          id: obj.id}
+          aux.fecha = new Date(aux.fecha.seconds * 1000)
+          array.push(aux)
+        })
+      }      
+    });
+  }
+
+  GetTurnos(usuario:string, array:any){
+
+    this.db.collection('turnos', ref => ref.where('paciente', '==', usuario)).get().subscribe
+    (element => {
+
+      if(element.docs){
+        element.docs.forEach( (obj:any) => {
+
+          let aux:any = { ...(obj.data() as Object),
+          id: obj.id}
+          aux.fecha = new Date(aux.fecha.seconds * 1000)
+          array.push(aux)
+        })
+      }      
+    });
+    
+  }
+
+  GetTurnosPorEspecialista(usuario:string, array:any){
+
+    this.db.collection('turnos', ref => ref.where('especialista', '==', usuario)).get().subscribe
+    (element => {
+
+      if(element.docs){
+        element.docs.forEach( (obj:any) => {
+
+          let aux:any = { ...(obj.data() as Object),
+          id: obj.id}
+          aux.fecha = new Date(aux.fecha.seconds * 1000)
+          array.push(aux)
+        })
+      }      
+    });
+  }
+
+
+  ActualizarTurno(doc:string, comentario:string, estado:string){
+    this.db.collection('turnos').doc(doc).update({"comentario": comentario, "estado": estado});
+  }
+
+  ActualizarTurnoResenia(doc:string, comentario:string, estado:string){
+    this.db.collection('turnos').doc(doc).update({"resenia": comentario, "estado": estado});
+  }
+
+  GuardarHistoria(historia:{}){
+    this.db.collection('historias').add(historia).catch( e => console.log("error al cargar en la base"));
+  }
+
+  GetHistoriasPorEspecialista(usuario:string, arrayHistorias:any, arrayUsuarios:any){
+
+    this.db.collection('historias', ref => ref.where('especialista', '==', usuario).orderBy("fecha", "desc")).get().subscribe
+    (element => {
+
+      if(element.docs){
+        element.docs.forEach( (obj:any) => {
+
+          let aux:any = { ...(obj.data() as Object),
+          id: obj.id}
+          aux.fecha = new Date(aux.fecha.seconds * 1000)
+          arrayHistorias.push(aux)
+
+          if(!arrayUsuarios.includes(aux.paciente)) arrayUsuarios.push(aux.paciente);
+          
+        })
+      }      
+    });
+  }
+
+  GetHistoriasPorPaciente(usuario:string, array:any){
+
+    this.db.collection('historias', ref => ref.where('paciente', '==', usuario).orderBy("fecha", "desc")).get().subscribe
+    (element => {
+
+      if(element.docs){
+        element.docs.forEach( (obj:any) => {
+
+          let aux:any = { ...(obj.data() as Object),
+          id: obj.id}
+          aux.fecha = new Date(aux.fecha.seconds * 1000)
+          array.push(aux)
+        })
+      }      
+    });
+  }
+  
 }

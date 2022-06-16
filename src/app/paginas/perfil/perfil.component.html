@@ -1,35 +1,93 @@
-<div class="main">
-
-    <div class="row">
-        <div class="colm-form">   
-            <div class="content">
-                <div class="profilePhoto">
-                <div class="image"><img src={{auth.usuario.img1}} alt="photo"></div>
-                <div class="name">
-                    <h1>{{auth.usuario.nombre}} {{auth.usuario.apellido}}</h1>
-                    <h4>{{auth.usuario.mail}}</h4>
+    <div class = "parent">
+        <div class="row div1">
+                <div class="content">
+                    <div class="profilePhoto">
+                        <div class="image"><img src={{this.auth.usuario.img1}} alt="photo"></div>
+                        <div class="name">
+                            <h1>{{this.auth.usuario.nombre}} {{this.auth.usuario.apellido}}</h1>
+                            <h4>{{this.auth.usuario.mail}}</h4>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="followers">
+                        <div class="f1 f" *ngIf="this.auth.usuario.tipo == 'paciente'" >
+                            <!--<h2>{{this.auth.usuario.obraSocial}}</h2>-->
+                            <h2>{{this.auth.usuario.obraSocial}}</h2>                           
+                            <p>Obra Social</p>
+                        </div>
+                        <div class="f2 f">
+                            <h2>{{this.auth.usuario.edad}}</h2>
+                            <p>edad</p>
+                        </div>
+                        <div class="f3 f">
+                            <h2>{{this.auth.usuario.dni}}</h2>
+                            <p>Dni</p>
+                        </div>
+                    </div>
+                    <div class="options">
+                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'paciente'">Solicitar Turno</button>
+                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'especialista'">Mis Horarios</button>
+                        <button type="button" class="btn red">Mis turnos</button>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="followers">
-                <div class="f1 f">
-                    <h2>{{auth.usuario.obraSocial}}</h2>
-                    <p>Obra Social</p>
+            <app-historia-clinica *ngIf="this.auth.usuario.tipo == 'paciente'" [historias]="historias"></app-historia-clinica>
+            <div class="row div2" *ngIf="this.auth.usuario.tipo == 'especialista'">
+                <div class="row justify-content-center align-items-center">
+                    <div class="card shadow-2-strong card-registration padding">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Dia</th>
+                                    <th scope="col">Entrada</th>
+                                    <th scope="col">Salida</th>                               
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Trabaja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dia of this.auth.usuario.diasAtencion">
+                                    <th scope="row">{{dia.dia}}</th>
+                                    <td>
+                                        <select [value]="dia.entrada" [(ngModel)]="dia.entrada">
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select (change)="ActualizarHorarios()"  [(ngModel)]="dia.salida" [value]="dia.salida">
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                        </select>
+                                    </td>
+                                    <td>{{dia.especialidad}}</td>
+                                    <td *ngIf="dia.trabaja" class="tdBtn"><button class="btnLogo" (click)="CambiarEstadoTrabajo(dia.dia, false)"><img src="../../../assets/comprobado.png" class="logo"></button></td>
+                                    <td *ngIf="!dia.trabaja" class="tdBtn"><button class="btnLogo" (click)="CambiarEstadoTrabajo(dia.dia, true)"><img src="../../../assets/cancelar.png" class="logo"></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <button (click)="ActualizarHorarios()">Actualizar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="f2 f">
-                    <h2>{{auth.usuario.edad}}</h2>
-                    <p>edad</p>
-                </div>
-                <div class="f3 f">
-                    <h2>{{auth.usuario.dni}}</h2>
-                    <p>Dni</p>
-                </div>
-            </div>
-            <div class="options">
-                <button type="button" class="btn red">Solicitar Turno</button>
-                <button type="button" class="btn red">Mis turnos</button>
             </div>
         </div>
     </div>
-</div>
-
+    </div>

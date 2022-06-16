@@ -1,0 +1,150 @@
+<div class="main">
+    <div class="container">
+            <div class="order-md-1">
+                <h4 class="mb-3">Historia Clinica</h4>
+                <form class="needs-validation" [formGroup]="formValidaciones"  required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="altura">Altura</label>
+                            <input type="text" class="form-control" id="altura" name="altura"
+                                formControlName="altura" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['altura'].errors?.['required'] && formValidaciones.controls['altura'].touched">
+                                Altura obligatoria!
+                            </small>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['altura'].errors?.['pattern'] && formValidaciones.controls['altura'].touched">
+                                Altura inválida
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="peso">Peso</label>
+                            <input type="text" class="form-control" id="peso" name="peso"
+                                formControlName="peso" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['peso'].errors?.['required'] && formValidaciones.controls['peso'].touched">
+                                Peso obligatorio!
+                            </small>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['peso'].errors?.['pattern'] && formValidaciones.controls['peso'].touched">
+                                Peso inválido
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="temperatura">Temperatura</label>
+                            <input type="text" class="form-control" id="temperatura" name="temperatura"
+                                formControlName="temperatura" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['temperatura'].errors?.['required'] && formValidaciones.controls['temperatura'].touched">
+                                Temperatura obligatoria!
+                            </small>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['temperatura'].errors?.['pattern'] && formValidaciones.controls['temperatura'].touched">
+                                Temperatura inválida
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="presion">Presion</label>
+                            <input type="text" class="form-control" id="presion" name="presion"
+                                formControlName="presion" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['presion'].errors?.['required'] && formValidaciones.controls['presion'].touched">
+                                Presion obligatorio!
+                            </small>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['presion'].errors?.['pattern'] && formValidaciones.controls['presion'].touched">
+                                Presion inválido
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="clave1">Clave 1</label>
+                            <input type="text" class="form-control" id="clave1" name="clave1"
+                                formControlName="clave1" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['clave1'].errors?.['required'] && formValidaciones.controls['clave1'].touched">
+                                Clave obligatoria!
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="valor1">Valor 1</label>
+                            <input type="text" class="form-control" id="valor1" name="valor1"
+                                formControlName="valor1" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['valor1'].errors?.['required'] && formValidaciones.controls['valor1'].touched">
+                                Valor obligatorio!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="clave2">Clave 2</label>
+                            <input type="text" class="form-control" id="clave2" name="clave2"
+                                formControlName="clave2" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['clave2'].errors?.['required'] && formValidaciones.controls['clave2'].touched">
+                                Clave obligatoria!
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="valor2">Valor 2</label>
+                            <input type="text" class="form-control" id="valor2" name="valor2"
+                                formControlName="valor2" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['valor2'].errors?.['required'] && formValidaciones.controls['valor2'].touched">
+                                Valor obligatorio!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="clave3">Clave 3</label>
+                            <input type="text" class="form-control" id="clave3" name="clave3"
+                                formControlName="clave3" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['clave3'].errors?.['required'] && formValidaciones.controls['clave3'].touched">
+                                Clave obligatoria!
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="valor3">Valor 3</label>
+                            <input type="text" class="form-control" id="valor3" name="valor3"
+                                formControlName="valor3" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['valor3'].errors?.['required'] && formValidaciones.controls['valor3'].touched">
+                                Valor obligatorio!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="clave4">Clave 4</label>
+                            <input type="text" class="form-control" id="clave4" name="clave4"
+                                formControlName="clave4" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['clave4'].errors?.['required'] && formValidaciones.controls['clave4'].touched">
+                                Clave obligatoria!
+                            </small>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="valor4">Valor 4</label>
+                            <input type="text" class="form-control" id="valor4" name="valor4"
+                                formControlName="valor4" placeholder="" value="" required>
+                            <small class="invalid"
+                                *ngIf="formValidaciones.controls['valor4'].errors?.['required'] && formValidaciones.controls['valor4'].touched">
+                                Valor obligatorio!
+                            </small>
+                        </div>
+                    </div>
+                        <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit"
+                        [disabled]="formValidaciones.invalid" (click)="EnviarHistoria()">Finalizar</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit"
+                        (click)="EnviarH()">Finalizar</button>
+                </form>
+            </div>
+        </div>
+    </div>

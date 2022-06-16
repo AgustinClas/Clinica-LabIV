@@ -19,6 +19,14 @@ import { HomeComponent } from './paginas/home/home.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { CaptchaComponent } from './componentes/captcha/captcha.component';
 import { MisTurnosUsuarioComponent } from './paginas/mis-turnos-usuario/mis-turnos-usuario.component';
+import { NuevoTurnoComponent } from './paginas/nuevo-turno/nuevo-turno.component';
+import { MisTurnosPacienteComponent } from './paginas/mis-turnos-paciente/mis-turnos-paciente.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MisTurnosEspecialistaComponent } from './paginas/mis-turnos-especialista/mis-turnos-especialista.component';
+import { TurnosAdminComponent } from './paginas/turnos-admin/turnos-admin.component';
+import { FormHistoriaClinicaComponent } from './componentes/form-historia-clinica/form-historia-clinica.component';
+import { HistoriaClinicaComponent } from './componentes/historia-clinica/historia-clinica.component';
+import { PacientesComponent } from './paginas/pacientes/pacientes.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +45,13 @@ import { MisTurnosUsuarioComponent } from './paginas/mis-turnos-usuario/mis-turn
     PerfilComponent,
     CaptchaComponent,
     MisTurnosUsuarioComponent,
+    NuevoTurnoComponent,
+    MisTurnosPacienteComponent,
+    MisTurnosEspecialistaComponent,
+    TurnosAdminComponent,
+    FormHistoriaClinicaComponent,
+    HistoriaClinicaComponent,
+    PacientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +66,8 @@ import { MisTurnosUsuarioComponent } from './paginas/mis-turnos-usuario/mis-turn
       storageBucket: "clinica-labiv.appspot.com",
       messagingSenderId: "194775249837",
       appId: "1:194775249837:web:eff89746ea2e0dfe876724"
-    })
+    }),
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

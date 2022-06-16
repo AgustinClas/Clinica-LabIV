@@ -4,6 +4,7 @@ import { Usuario } from '../../Entidades/usuario'
 import { Router } from '@angular/router';
 import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
 import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
               else
               {
                 this.dataStorage.GuardarLog(this.authService.usuario.mail);
+                console.log(this.authService.usuario);
                 this.ruteo.navigateByUrl("Home");
                 this.authService.authenticateState();
               }
@@ -85,7 +87,7 @@ export class LoginComponent implements OnInit {
         this.loginUsuario.password = "123456";
         break;
       case 5: 
-        this.loginUsuario.email = "usuario5@anonimo.com";
+        this.loginUsuario.email = "germandiaz@gmail.com";
         this.loginUsuario.password = "123456";
         break;
       case 6: 

@@ -18,7 +18,7 @@
     .div10 { grid-area: 4 / 1 / 5 / 4; }
 
 .boton{
-    width: 12vw;
+    width: 95%;
     height: 10vh;
     border-color: #ff1616;
     background-color: #ffffff;
@@ -28,7 +28,7 @@
 }
 
 .botonEnviar{
-    width: 38vw;
+    width: 27vw;
     height: 10vh;
     border-color: #ff1616;
     background-color: #ffffff;

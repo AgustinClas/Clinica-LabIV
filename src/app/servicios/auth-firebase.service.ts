@@ -11,7 +11,18 @@ import { DataStorageServiceService } from './data-storage-service.service';
 export class AuthFirebaseService {
   
   authenticated$ = new BehaviorSubject(false);
-  usuario:any;
+  usuario:any /*= {
+    "nombre": "Lio",
+    "contrasenia": "123456",
+    "img1": "https://firebasestorage.googleapis.com/v0/b/clinica-labiv.appspot.com/o/usuarios%2Flapulguitamessi%40gmail.comimg1?alt=media&token=8a08901e-89d6-47df-a627-1e938efb6ae9",
+    "mail": "lapulguitamessi@gmail.com",
+    "tipo": "paciente",
+    "edad": "34",
+    "obraSocial": "Galeno",
+    "img2": "https://firebasestorage.googleapis.com/v0/b/clinica-labiv.appspot.com/o/usuarios%2Flapulguitamessi%40gmail.comimg2?alt=media&token=f4c602ea-4aac-407d-b166-cfa381f1b7a0",
+    "apellido": "Messi",
+    "dni": "28555444"
+  };*/
   email:any;
 
   constructor(private auth:AngularFireAuth, private dataStorage:DataStorageServiceService) { 
@@ -20,11 +31,9 @@ export class AuthFirebaseService {
 
   public async authenticate(usr?:string) {
 
-console.log(usr);
     if(usr)
     await this.dataStorage.GetUsuario(usr).then(e => e.get().pipe().subscribe(res => {
       this.usuario = res.data();
-      console.log(this.usuario);
     }));
   }
   

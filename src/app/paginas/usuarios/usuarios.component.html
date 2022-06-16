@@ -3,6 +3,11 @@
         <div class="row justify-content-center align-items-center">
             <div class="card shadow-2-strong card-registration padding">
                 <div class="card-body">
+                    <button (click)="DescargarXLSX()">Descargar archivo XLSX</button>
+                </div>
+            </div>
+            <div class="card shadow-2-strong card-registration padding">
+                <div class="card-body">
                     <div class="tittle">
                         <h3>Pacientes
                             <button  class="botonImg">
@@ -29,9 +34,11 @@
                                 <td>{{paciente.dni}}</td>
                                 <td>{{paciente.mail}}</td>
                                 <td>{{paciente.edad}}</td>
+                                <td><button (click)="MostrarHistoriaClinica(paciente.mail)">Historia clinica</button></td>
                             </tr>
                         </tbody>
                     </table>
+                    <app-historia-clinica *ngIf="historiasView" [historias]="historias" ></app-historia-clinica>
                 </div>
             </div>
 

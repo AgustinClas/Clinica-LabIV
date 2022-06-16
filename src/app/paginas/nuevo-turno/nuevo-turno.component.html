@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="eleccion" *ngIf="nivelesVista.especialidad"><button class="btnEspEleccion" (click)="ActualizarNivel(0)">{{especialidadElegida}}</button></div>
+    <div class="cuadricula" *ngIf="!nivelesVista.especialidad">
+        <div class="divEleccion" *ngFor="let esp of especialidades">
+            <button class = "botonEsp" (click)="ElegirEspecialidad(esp.especialidad)">
+                <img src={{esp.imagen}} class = "imgEsp">
+                {{esp.especialidad}}
+            </button>
+        </div>
+    </div>
+    <div class="eleccion"><button class="btnEspEleccion" *ngIf="nivelesVista.especialistas" (click)="ActualizarNivel(1)">{{especialistaElegida.nombre}} {{especialistaElegida.apellido}}</button></div>
+    <div class="cuadricula" *ngIf="!nivelesVista.especialistas && nivelesVista.especialidad">
+        <div class="divEleccion" *ngFor="let esp of especialistas">
+            <button class = "botonEsp" (click)="ElegirEspecialista(esp)">
+                <img src={{esp.img1}} class = "imgEsp">
+                {{esp.nombre}} {{esp.apellido}}
+            </button>
+        </div>
+    </div>
+    <div class="eleccion"><button class="btnEspEleccion" *ngIf="nivelesVista.fecha" (click)="ActualizarNivel(2)">{{fechaElegida  | date:"dd-MM-YYYY"}}</button></div>
+    <div class="cuadricula" *ngIf="!nivelesVista.fecha && nivelesVista.especialistas">
+        <div class="divEleccion" *ngFor="let dia of fechas">
+            <button class = "botonEsp" (click)="ElegirFecha(dia)">
+                {{dia | date:"dd-MM-YYYY"}} 
+            </button>
+        </div>
+    </div>
+    <div class="cuadricula" *ngIf="!nivelesVista.horario && nivelesVista.fecha">
+        <div class="divEleccion" *ngFor="let hora of horarios">
+            <button class = "botonEsp" (click)="ElegirHorario(hora)">
+                {{hora| date:'HH:mm'}} 
+            </button>
+        </div>
+    </div>
+</div> 
