@@ -25,9 +25,9 @@
                         </div>
                     </div>
                     <div class="options">
-                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'paciente'">Solicitar Turno</button>
-                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'especialista'">Mis Horarios</button>
-                        <button type="button" class="btn red">Mis turnos</button>
+                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'paciente'" (click)="createTablePDF()">Descargar PDF</button>
+                        <button type="button" class="btn red" *ngIf="this.auth.usuario.tipo == 'paciente'" (click)="createTablePDFPorEspecialidad()">Descargar PDF por especialidad</button>
+                        <input type="text" class="input" [(ngModel)]="especialidadElegida" *ngIf="this.auth.usuario.tipo == 'paciente'">
                     </div>
                 </div>
             <app-historia-clinica *ngIf="this.auth.usuario.tipo == 'paciente'" [historias]="historias"></app-historia-clinica>

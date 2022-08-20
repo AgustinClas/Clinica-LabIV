@@ -11,7 +11,8 @@ import { DataStorageServiceService } from './data-storage-service.service';
 export class AuthFirebaseService {
   
   authenticated$ = new BehaviorSubject(false);
-  usuario:any /*= {
+  
+  /*usuario:any = {
     "nombre": "Lio",
     "contrasenia": "123456",
     "img1": "https://firebasestorage.googleapis.com/v0/b/clinica-labiv.appspot.com/o/usuarios%2Flapulguitamessi%40gmail.comimg1?alt=media&token=8a08901e-89d6-47df-a627-1e938efb6ae9",
@@ -23,6 +24,63 @@ export class AuthFirebaseService {
     "apellido": "Messi",
     "dni": "28555444"
   };*/
+
+  usuario:any /*= {
+    "contrasenia": "123456",
+    "activado": true,
+    "nombre": "German",
+    "apellido": "Diaz",
+    "edad": "50",
+    "dni": "43123987",
+    "diasAtencion": [
+        {
+            "especialidad": "Oculista",
+            "trabaja": false,
+            "entrada": "11",
+            "salida": "14",
+            "dia": "lunes"
+        },
+        {
+            "especialidad": "Oculista",
+            "entrada": "8",
+            "dia": "martes",
+            "trabaja": false,
+            "salida": "18"
+        },
+        {
+            "trabaja": false,
+            "dia": "miercoles",
+            "especialidad": "Oculista",
+            "entrada": "8",
+            "salida": "18"
+        },
+        {
+            "entrada": "8",
+            "dia": "jueves",
+            "trabaja": false,
+            "especialidad": "Oculista",
+            "salida": "18"
+        },
+        {
+            "especialidad": "Oculista",
+            "salida": "16",
+            "trabaja": true,
+            "entrada": "10",
+            "dia": "viernes"
+        },
+        {
+            "dia": "sabado",
+            "entrada": "8",
+            "trabaja": false,
+            "especialidad": "Oculista",
+            "salida": "18"
+        }
+    ],
+    "tipo": "especialista",
+    "mail": "germandiaz@gmail.com",
+    "img1": "https://firebasestorage.googleapis.com/v0/b/clinica-labiv.appspot.com/o/usuarios%2Fgermandiaz%40gmail.comimg1?alt=media&token=f40d6f2b-4acb-40bf-a338-9637798b8990",
+    "especialidad": "Oculista"
+}*/
   email:any;
 
   constructor(private auth:AngularFireAuth, private dataStorage:DataStorageServiceService) { 
@@ -66,7 +124,7 @@ export class AuthFirebaseService {
       handleCodeInApp:true
     }
     console.log(mail);
-    this.auth.sendSignInLinkToEmail(mail, setting);
+    this.auth.currentUser.then(obj => obj?.sendEmailVerification)
   }
 
   obtenerUsuarioLogueado(){

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
 import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
@@ -30,6 +30,8 @@ export class FormHistoriaClinicaComponent implements OnInit {
   }
 
   formValidaciones;
+  camposAgregados:any = [];
+  contador = 1;
   
   constructor( private authService:AuthFirebaseService, private dataStorage:DataStorageServiceService, public ruteo:Router ) { 
     let fb = new FormBuilder();
@@ -40,25 +42,35 @@ export class FormHistoriaClinicaComponent implements OnInit {
         'peso': ['', [Validators.required, Validators.pattern('[0-9,]*')]],
         'temperatura': ['', [Validators.required, Validators.pattern('[0-9,]*')]],
         'presion': ['', [Validators.required, Validators.pattern('[0-9,]*')]],
-        'clave1': ['', [Validators.required]],
-        'clave2': ['', [Validators.required]],
-        'clave3': ['', [Validators.required]],
-        'clave4': ['', [Validators.required]],
-        'valor1': ['', [Validators.required]],
-        'valor2': ['', [Validators.required]],
-        'valor3': ['', [Validators.required]],
-        'valor4': ['', [Validators.required]],
       }
     );
   }
   
   ngOnInit(): void {
+
   }
 
-  EnviarH(){
+  AgregarCampo(){
+
+    this.contador++;
+    
+    this.formValidaciones.addControl("campo" + this.contador.toString(), new FormControl('', Validators.required))
+    this.formValidaciones.addControl("valor" + this.contador.toString(), new FormControl('', Validators.required))
+
+    this.camposAgregados.push({"campo": "campo" + this.contador.toString(), "valor": "valor" + this.contador.toString()})
   }
+
 
   EnviarHistoria(){
+
+    let camposDinamicos:any = [];
+
+    this.camposAgregados.forEach((element:any) => {
+      camposDinamicos.push({
+        campo: this.formValidaciones.controls[element.campo].value,
+        valor: this.formValidaciones.controls[element.valor].value,
+      })
+    });
 
     let historia = {
       fecha : this.turno.fecha,
@@ -69,10 +81,7 @@ export class FormHistoriaClinicaComponent implements OnInit {
       peso: this.formValidaciones.controls['peso'].value,
       temperatura: this.formValidaciones.controls['temperatura'].value,
       presion: this.formValidaciones.controls['presion'].value,
-      campo1:{clave: this.formValidaciones.controls['clave1'].value, valor: this.formValidaciones.controls['valor1'].value},
-      campo2:{clave: this.formValidaciones.controls['clave2'].value, valor: this.formValidaciones.controls['valor2'].value},
-      campo3:{clave: this.formValidaciones.controls['clave3'].value, valor: this.formValidaciones.controls['valor3'].value},
-      campo4:{clave: this.formValidaciones.controls['clave4'].value, valor: this.formValidaciones.controls['valor4'].value}
+      camposDinamicos
     }
 
     console.log(historia);

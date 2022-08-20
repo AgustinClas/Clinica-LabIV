@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label><label class="campo">Altura: </label> {{historia.altura}}</label>
+                    <label><label class="campo">Altura: </label> {{historia.altura | altura}}</label>
                 </div>
                 <div class="col-md-6">
                     <label><label class="campo">Peso: </label> {{historia.peso}}</label>
@@ -28,19 +28,8 @@
                 <div class="col-md-6">
                     <label><label class="campo">Presión: </label> {{historia.presion}}</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label><label class="campo">{{historia.campo1.clave}} </label> {{historia.campo1.valor}}</label>
-                </div>
-                <div class="col-md-6">
-                    <label><label class="campo">{{historia.campo2.clave}} </label> {{historia.campo2.valor}}</label>
-                </div>
-                <div class="col-md-6">
-                    <label><label class="campo">{{historia.campo3.clave}} </label> {{historia.campo3.valor}}</label>
-                </div>
-                <div class="col-md-6">
-                    <label><label class="campo">{{historia.campo4.clave}} </label> {{historia.campo4.valor}}</label>
+                <div class="col-md-6" *ngFor="let dato of historia.camposDinamicos">
+                    <label><label class="campo">{{dato.campo}}: </label> {{dato.valor}}</label>
                 </div>
             </div>
         </div>

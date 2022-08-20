@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
                 this.ruteo.navigateByUrl("Home");
                 this.authService.authenticateState();
               }
-          }, 5000)
+          }, 2000)
         
         }}).catch(e => {this.errorInicio = true});
         

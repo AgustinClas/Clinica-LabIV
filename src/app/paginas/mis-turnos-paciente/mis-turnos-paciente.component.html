@@ -1,6 +1,6 @@
 <section class="gradient-custom main">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center slide-top">
             <div>
                 <div>
                     <div class="input-group">
@@ -36,7 +36,7 @@
                                             <td>{{turno.especialidad}}</td>
                                             <td>{{turno.fecha | date:"dd-MM-yy"}}</td>
                                             <td>{{turno.fecha | date:"HH:mm"}}</td>    
-                                            <td>{{turno.estado}}</td>  
+                                            <td>{{turno.estado | estado}}</td>  
                                             <td class="tdAccion"> 
                                                 <button *ngIf="turno.estado == 'pendienteAceptacion'" (click)="CancelarTurnoForm(turno)">Cancelar</button>
                                                 <button *ngIf="turno.comentario != ''" (click)="MostrarComentarioForm(turno, true)">Ver comentario</button>

@@ -1,0 +1,15 @@
+.divButton{
+    width: 40vw;
+    margin-top: 5px;
+}
+
+.info{
+    margin:auto;
+    background-color: #ff5757;
+    border-radius: 50;
+    border-color: #ff1616;
+}
+
+.info:hover{
+    background-color: #ff1616
+}

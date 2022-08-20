@@ -1,6 +1,6 @@
 <div class="main">
     <div class="eleccion" *ngIf="nivelesVista.especialidad"><button class="btnEspEleccion" (click)="ActualizarNivel(0)">{{especialidadElegida}}</button></div>
-    <div class="cuadricula" *ngIf="!nivelesVista.especialidad">
+    <div class="cuadricula slide-top" *ngIf="!nivelesVista.especialidad">
         <div class="divEleccion" *ngFor="let esp of especialidades">
             <button class = "botonEsp" (click)="ElegirEspecialidad(esp.especialidad)">
                 <img src={{esp.imagen}} class = "imgEsp">

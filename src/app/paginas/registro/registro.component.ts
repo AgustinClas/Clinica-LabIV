@@ -85,7 +85,7 @@ export class RegistroComponent implements OnInit  {
         //Si no se encuentra cargada, la cargo en la base de datos
         if(flag) this.dataStorage.GuardarEspecialidad(this.especialista.especialidad)
   
-        //this.authService.EnviarEmail();
+        this.authService.sendVerificationEmail(this.especialista.mail);
       }).catch(e => {
         console.log("Error al iniciar usuario" + e);
         //this.errorRegistro = true;

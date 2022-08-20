@@ -1,4 +1,7 @@
 <div class="main">
+    <div class="divTop3" *ngFor="let arrayHis of historiasTop3">
+        <app-historia-clinica [historias]="arrayHis"></app-historia-clinica>
+    </div>
     <div class="eleccion" *ngIf="usuarioElegido">
         <button class="btnEspEleccion" (click)="QuitarUsuarioElegido()">{{usuarioElegido}}</button>
     </div>

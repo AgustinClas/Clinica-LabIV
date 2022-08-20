@@ -12,13 +12,14 @@ export class PacientesComponent implements OnInit {
   usuarioElegido:string = "";
   usuarios:Array<any> = [];
   historias:any = [];
+  historiasTop3:any = [];
   historiasParaMostrar:any = [];
 
   constructor(private dataStorage:DataStorageServiceService) { }
 
   ngOnInit(): void {
 
-    this.dataStorage.GetHistoriasPorEspecialista("germandiaz@gmail.com", this.historias, this.usuarios);    
+    this.dataStorage.GetHistoriasPorEspecialista("germandiaz@gmail.com", this.historias, this.usuarios, this.historiasTop3);
   }
 
   ElegirUsuario(mail:string){
@@ -36,5 +37,9 @@ export class PacientesComponent implements OnInit {
     this.usuarioElegidoVw = false;
     this.usuarioElegido= "";
     this.historiasParaMostrar = [];
+  }
+
+  abc(){
+    console.log(this.usuarios);
   }
 }

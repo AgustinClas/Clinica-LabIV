@@ -1,0 +1,18 @@
+<div class="tittle">
+    <h3>Turnos por especialidad</h3>
+</div>
+<div style="width: 40vw;" id="grafico2">
+    <div class="chart">
+      <canvas baseChart
+              [data]="pieChartData"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+>      </canvas>
+    </div>
+</div>
+<div class="divButton">
+    <button class="info" (click)="DescargarInfo()">Descargar info</button>
+</div>
+<div class="divButton">
+    <button class="info" (click)="descargarPDF('grafico2','turnosXespecialidad')">Descargar Grafico</button>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { title } from 'process';
 import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
 import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-mis-turnos-especialista',
@@ -45,11 +47,16 @@ export class MisTurnosEspecialistaComponent implements OnInit {
     this.turnoElegido.comentario = this.comentario;
     this.CancelarForm = false;
     this.comentario = "";
+
   }
 
   RechazarTurnoForm(turno : any){
     this.RechazarForm = true;
     this.turnoElegido = turno;
+  }
+
+  simpleAlert(){
+    Swal.fire('Hello world!');
   }
 
   RechazarTurno(){
@@ -66,14 +73,12 @@ export class MisTurnosEspecialistaComponent implements OnInit {
     this.turnoElegido.estado = "aceptado";
   }
 
-  MostrarComentarioForm(turno:any, opcion:boolean){
-    this.ComentarioForm = opcion;
-    this.turnoElegido = turno;
+  MostrarComentarioForm(turno:any){
+    Swal.fire(turno.comentario)
   }
 
-  MostrarReseniaForm(opcion:boolean, turno:any){
-    this.reseniaForm = opcion;
-    this.turnoElegido = turno;
+  MostrarReseniaForm(turno:any){
+    Swal.fire(turno.resenia);
   }
 
   CargarReseniaForm(turno : any){
@@ -85,7 +90,7 @@ export class MisTurnosEspecialistaComponent implements OnInit {
   CerrarHistoriaForm(){
     this.historiaForm = false;
     this.turnoElegido.estado = "finalizado";
-    this.dataStorage.ActualizarTurno(this.turnoElegido.id, this.turnoElegido.comentario, "aceptado");
+    this.dataStorage.ActualizarTurno(this.turnoElegido.id, this.turnoElegido.comentario, "finalizado");
   }
 
   CargarReseniaTurno(){
@@ -97,21 +102,34 @@ export class MisTurnosEspecialistaComponent implements OnInit {
 
   BuscarTurnos(){
 
-    console.log(this.busqueda);
     if(this.busqueda == "") this.turnosParaMostrar = this.turnos
     else{
       let palabra = this.busqueda.toLowerCase();
-      console.log(palabra);
       this.turnosParaMostrar = this.turnos;
 
       this.turnosParaMostrar = this.turnosParaMostrar.filter((element:any) => {
-        console.log("Acaaaaaa");
-        return element.especialidad.toLowerCase().includes(palabra) || element.paciente.toLowerCase().includes(palabra)
+        return element.especialidad.toLowerCase().includes(palabra) || element.paciente.toLowerCase().includes(palabra) || this.BuscarTurnoEnHistoria(palabra, element.historia)
       })
 
-      console.log(this.turnosParaMostrar)
     }
   }
 
+  BuscarTurnoEnHistoria(palabra:string, historia:any) :boolean {
+
+    let flag = false;
+
+    if(historia != undefined){ 
+      if(historia.altura.toLowerCase().includes(palabra) || historia.especialidad.toLowerCase().includes(palabra) || historia.peso.toLowerCase().includes(palabra) || historia.temperatura.toLowerCase().includes(palabra)) return true
+
+      if(historia.camposDinamicos != undefined)
+      historia.camposDinamicos.forEach((element:any) => {
+        if(element.campo.toLowerCase().includes(palabra) || element.valor.toLowerCase().includes(palabra)) flag = true
+      })
+
+      return flag;
+    }
+
+    return false;
+  }
 
 }

@@ -27,6 +27,16 @@ import { TurnosAdminComponent } from './paginas/turnos-admin/turnos-admin.compon
 import { FormHistoriaClinicaComponent } from './componentes/form-historia-clinica/form-historia-clinica.component';
 import { HistoriaClinicaComponent } from './componentes/historia-clinica/historia-clinica.component';
 import { PacientesComponent } from './paginas/pacientes/pacientes.component';
+import { EstadisticasComponent } from './paginas/estadisticas/estadisticas.component';
+import { NgChartsModule } from 'ng2-charts';
+import { GraficoLogsComponent } from './componentes/grafico-logs/grafico-logs.component';
+import { GraficoTurnosEspecialidadComponent } from './componentes/grafico-turnos-especialidad/grafico-turnos-especialidad.component';
+import { GraficoTurnosDiaComponent } from './componentes/grafico-turnos-dia/grafico-turnos-dia.component';
+import { GraficoTurnosPorMedicoComponent } from './componentes/grafico-turnos-por-medico/grafico-turnos-por-medico.component';
+import { GraficoTurnosFinalizadosComponent } from './componentes/grafico-turnos-finalizados/grafico-turnos-finalizados.component';
+import { AlturaPipe } from './pipes/altura.pipe';
+import { EstadoPipe } from './pipes/estado.pipe';
+import { EstadoDirective } from './directivas/estado.directive';
 
 @NgModule({
   declarations: [
@@ -52,9 +62,19 @@ import { PacientesComponent } from './paginas/pacientes/pacientes.component';
     FormHistoriaClinicaComponent,
     HistoriaClinicaComponent,
     PacientesComponent,
+    EstadisticasComponent,
+    GraficoLogsComponent,
+    GraficoTurnosEspecialidadComponent,
+    GraficoTurnosDiaComponent,
+    GraficoTurnosPorMedicoComponent,
+    GraficoTurnosFinalizadosComponent,
+    AlturaPipe,
+    EstadoPipe,
+    EstadoDirective,
   ],
   imports: [
     BrowserModule,
+    NgChartsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

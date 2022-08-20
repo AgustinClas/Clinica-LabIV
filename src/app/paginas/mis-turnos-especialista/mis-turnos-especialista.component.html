@@ -1,6 +1,6 @@
 <section class="gradient-custom main">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center slide-top">
             <div>
                 <div class="input-group">
                     <div id="search-autocomplete" class="form-outline">
@@ -35,13 +35,13 @@
                                         <td>{{turno.especialidad}}</td>
                                         <td>{{turno.fecha | date:"dd-MM-yy"}}</td>
                                         <td>{{turno.fecha | date:"HH:mm"}}</td>    
-                                        <td>{{turno.estado}}</td>  
+                                        <td>{{turno.estado | estado}}</td>  
                                         <td class="tdAccion">
                                             <button *ngIf="turno.estado == 'pendienteAceptacion'" (click)="CancelarTurnoForm(turno)">Cancelar</button>
                                             <button *ngIf="turno.estado == 'pendienteAceptacion'" (click)="RechazarTurnoForm(turno)">Rechazar</button>
                                             <button *ngIf="turno.estado == 'pendienteAceptacion'" (click)="AceptarTurno(turno)">Aceptar</button>
-                                            <button *ngIf="turno.comentario != ''" (click)="MostrarComentarioForm(turno, true)">Ver comentario</button>
-                                            <button *ngIf="turno.resenia != ''" (click)="MostrarReseniaForm(true, turno)">Ver resenia</button>
+                                            <button *ngIf="turno.comentario != ''" (click)="MostrarComentarioForm(turno)">Ver comentario</button>
+                                            <button *ngIf="turno.resenia != ''" (click)="MostrarReseniaForm(turno)">Ver resenia</button>
                                             <button *ngIf="turno.estado == 'aceptado'" (click)="CargarReseniaForm(turno)">Finalizar Turno</button>
                                         </td>
                                     </tr>
@@ -57,18 +57,6 @@
                             Motivo de rechazo
                             <input type="text" [(ngModel)]="comentario">
                             <button (click)="RechazarTurno()">Rechazar Turno</button>
-                        </div>
-                        <div *ngIf="ComentarioForm" >
-                            Comentario
-                            <br>
-                            {{turnoElegido.comentario}}
-                            <button (click)="MostrarComentarioForm('', false)">Ok!</button>
-                        </div>
-                        <div *ngIf="reseniaForm" >
-                            Reseña
-                            <br>
-                            {{turnoElegido.resenia}}
-                            <button (click)="MostrarReseniaForm(false, '')">Ok!</button>
                         </div>
                         <div *ngIf="cargarReseniaForm" >
                             Reseña

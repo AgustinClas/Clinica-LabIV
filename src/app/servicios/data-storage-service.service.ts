@@ -94,6 +94,10 @@ export class DataStorageServiceService {
     return this.db.collection('usuarios').valueChanges();
   }
 
+  GetLogs(){
+    return this.db.collection('logs').valueChanges();
+  }
+
   CambiarHabilitacion(mail:string, opcion:boolean){
     this.db.collection('usuarios').doc(mail).update({"activado": opcion});
   }
@@ -116,10 +120,26 @@ export class DataStorageServiceService {
           let aux:any = { ...(obj.data() as Object),
           id: obj.id}
           aux.fecha = new Date(aux.fecha.seconds * 1000)
-          array.push(aux)
+
+          this.db.collection('historias', ref => ref.where("fecha", '==' ,aux.fecha).where("especialista", '==' ,aux.especialista)).get().subscribe(
+            element => {
+              if(element.docs && element.docs.length > 0 && element.docs[0].data() != undefined){
+                aux.historia = element.docs[0].data()
+              }
+              array.push(aux)
+            }
+          )
         })
       }      
     });
+  }
+
+  GetCantidadTurnos(){
+    return this.db.collection('turnos', ref => ref.orderBy("fecha", "asc")).get()
+  }
+
+  GetCantidadTurnosFinalizados(){
+    return this.db.collection('turnos', ref => ref.where("estado", "==", "finalizado").orderBy("fecha", "asc")).get()
   }
 
   GetTurnos(usuario:string, array:any){
@@ -133,8 +153,17 @@ export class DataStorageServiceService {
           let aux:any = { ...(obj.data() as Object),
           id: obj.id}
           aux.fecha = new Date(aux.fecha.seconds * 1000)
-          array.push(aux)
+
+          this.db.collection('historias', ref => ref.where("fecha", '==' ,aux.fecha).where("paciente", '==' ,aux.paciente)).get().subscribe(
+            element => {
+              if(element.docs && element.docs.length > 0 && element.docs[0].data() != undefined){
+                aux.historia = element.docs[0].data()
+              }
+              array.push(aux)
+            }
+          )
         })
+
       }      
     });
     
@@ -151,7 +180,15 @@ export class DataStorageServiceService {
           let aux:any = { ...(obj.data() as Object),
           id: obj.id}
           aux.fecha = new Date(aux.fecha.seconds * 1000)
-          array.push(aux)
+
+          this.db.collection('historias', ref => ref.where("fecha", '==' ,aux.fecha).where("especialista", '==' ,aux.especialista)).get().subscribe(
+            element => {
+              if(element.docs && element.docs.length > 0 && element.docs[0].data() != undefined){
+                aux.historia = element.docs[0].data()
+              }
+              array.push(aux)
+            }
+          )
         })
       }      
     });
@@ -170,9 +207,9 @@ export class DataStorageServiceService {
     this.db.collection('historias').add(historia).catch( e => console.log("error al cargar en la base"));
   }
 
-  GetHistoriasPorEspecialista(usuario:string, arrayHistorias:any, arrayUsuarios:any){
+  async GetHistoriasPorEspecialista(usuario:string, arrayHistorias:any, arrayUsuarios:any, historiasTop3:any){
 
-    this.db.collection('historias', ref => ref.where('especialista', '==', usuario).orderBy("fecha", "desc")).get().subscribe
+    await this.db.collection('historias', ref => ref.where('especialista', '==', usuario).orderBy("fecha", "desc")).get().subscribe
     (element => {
 
       if(element.docs){
@@ -186,7 +223,15 @@ export class DataStorageServiceService {
           if(!arrayUsuarios.includes(aux.paciente)) arrayUsuarios.push(aux.paciente);
           
         })
-      }      
+      }     
+      
+      for(let i = 0; i < 3; i++){
+        historiasTop3[i] = arrayHistorias.filter((obj:any) => {
+          return obj.paciente == arrayUsuarios[i]
+        })
+      }
+
+      arrayUsuarios.splice(0, 3);
     });
   }
 

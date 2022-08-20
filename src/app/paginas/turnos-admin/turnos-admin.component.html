@@ -38,7 +38,7 @@
                                             <td>{{turno.especialidad}}</td>
                                             <td>{{turno.fecha | date:"dd-MM-yy"}}</td>
                                             <td>{{turno.fecha | date:"HH:mm"}}</td>    
-                                            <td>{{turno.estado}}</td>  
+                                            <td>{{turno.estado | estado}}</td>  
                                             <td *ngIf="turno.estado != 'finalizado' && turno.estado != 'canceladoPac' && turno.estado != 'canceladoEsp' && turno.estado != 'canceladoAdm'"><button (click)="CancelarTurnoForm(turno)">Cancelar</button></td>
                                         </tr>
                                     </tbody>

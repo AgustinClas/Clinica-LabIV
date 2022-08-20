@@ -62,6 +62,7 @@ export class MisTurnosPacienteComponent implements OnInit {
     this.CalificarForm = true;
     this.turnoElegido = turno;
   }
+  
   CalificarAtencion(){
     this.dataStorage.ActualizarTurno(this.turnoElegido.id, this.comentario, this.turnoElegido.estado);
     this.turnoElegido.comentario = this.comentario;
@@ -80,11 +81,29 @@ export class MisTurnosPacienteComponent implements OnInit {
 
       this.turnosParaMostrar = this.turnosParaMostrar.filter((element:any) => {
         console.log("Acaaaaaa");
-        return element.especialidad.toLowerCase().includes(palabra) || element.especialista.toLowerCase().includes(palabra)
+        return element.especialidad.toLowerCase().includes(palabra) || element.especialista.toLowerCase().includes(palabra) || this.BuscarTurnoEnHistoria(palabra, element.historia) 
       })
 
       console.log(this.turnosParaMostrar)
     }
+  }
+
+  BuscarTurnoEnHistoria(palabra:string, historia:any) :boolean {
+
+    let flag = false;
+
+    if(historia != undefined){ 
+      if(historia.altura.toLowerCase().includes(palabra) || historia.especialidad.toLowerCase().includes(palabra) || historia.peso.toLowerCase().includes(palabra) || historia.temperatura.toLowerCase().includes(palabra)) return true
+
+      if(historia.camposDinamicos != undefined)
+      historia.camposDinamicos.forEach((element:any) => {
+        if(element.campo.toLowerCase().includes(palabra) || element.valor.toLowerCase().includes(palabra)) flag = true
+      })
+
+      return flag;
+    }
+
+    return false;
   }
 
 }

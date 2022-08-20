@@ -1,0 +1,18 @@
+<div class="tittle">
+    <h3>Turnos proximos (10 dias)</h3>
+</div>
+<div style="width: 40vw;" id="grafico4">
+    <div style="display: block">
+        <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="barChartType">
+        </canvas>  
+    </div>
+</div>
+<div class="divButton">
+    <button class="info" (click)="DescargarInfo()">Descargar info</button>
+</div>
+<div class="divButton">
+    <button class="info" (click)="descargarPDF('grafico4','turnosProximos')">Descargar Grafico</button>
+</div>

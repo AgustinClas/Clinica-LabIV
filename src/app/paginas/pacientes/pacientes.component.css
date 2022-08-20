@@ -27,6 +27,18 @@
     
 }
 
+.divTop3{
+    width: 90vw;
+    margin: auto;
+    border-radius: 15px;
+    background-color: #ff5757;
+    border-color: #ff1616;
+    border-width: 5px;
+    margin-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
 .divEleccion{
     justify-content: center;
     background-color: "red";

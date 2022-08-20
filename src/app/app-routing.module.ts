@@ -19,6 +19,7 @@ import { TurnosAdminComponent } from './paginas/turnos-admin/turnos-admin.compon
 import { UsuariosComponent } from './paginas/usuarios/usuarios.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PacientesComponent } from './paginas/pacientes/pacientes.component';
+import { EstadisticasComponent } from './paginas/estadisticas/estadisticas.component';
 
 const routes: Routes = [
   {path: '',  component:BienvenidaComponent, canActivate:[UsuarioDeslogueadoGuard], },
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'MisTurnosEsp', component: MisTurnosEspecialistaComponent, canActivate:[EspecialistaGuard]},
   {path: 'Pacientes', component: PacientesComponent, canActivate:[EspecialistaGuard]},
   {path: 'turnos', component: TurnosAdminComponent, canActivate:[AdminGuard]},
+  {path: 'estadisticas', component: EstadisticasComponent, canActivate:[AdminGuard]},
   {path: '*', component:LoginComponent},
 ];
 

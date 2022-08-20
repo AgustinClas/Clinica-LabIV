@@ -1,6 +1,6 @@
 <section class="gradient-custom main">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center slide-top">
             <div class="card shadow-2-strong card-registration padding">
                 <div class="card-body">
                     <button (click)="DescargarXLSX()">Descargar archivo XLSX</button>
@@ -22,15 +22,18 @@
                     <table class="table table-hover" *ngIf="tablaPacienteView">
                         <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Nombre</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Email</th>
                             <th scope="col">Edad</th>
+                            <th scope="col">Historia</th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let paciente of pacientes">
-                                <th scope="row">{{paciente.nombre}} {{paciente.apellido}}</th>
+                                <td scope="row"><button (click)="DescargarXLSXporPaciente(paciente.mail)" class="imgPerfil"><img src={{paciente.img1}} class="imgPerfil1"></button></td>
+                                <td scope="row">{{paciente.nombre}} {{paciente.apellido}}</td>
                                 <td>{{paciente.dni}}</td>
                                 <td>{{paciente.mail}}</td>
                                 <td>{{paciente.edad}}</td>
@@ -58,6 +61,7 @@
                     <table class="table table-hover" *ngIf="tablaEspecialistaView">
                         <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Nombre</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Mail</th>
@@ -67,6 +71,7 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let especialista of especialistas">
+                            <td scope="row"><img src={{especialista.img1}} class="imgPerfil"></td>
                             <th scope="row">{{especialista.nombre}} {{especialista.apellido}}</th>
                             <td>{{especialista.dni}}</td>
                             <td>{{especialista.mail}}</td>
@@ -95,6 +100,7 @@
                     <table class="table table-hover" *ngIf="tablaAdminView">
                         <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Nombre</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Mail</th>
@@ -103,6 +109,7 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let admin of admins">
+                            <td scope="row"><img src={{admin.img1}} class="imgPerfil"></td>
                             <th scope="row">{{admin.nombre}} {{admin.apellido}}</th>
                             <td>{{admin.dni}}</td>
                             <td>{{admin.mail}}</td>

@@ -26,6 +26,7 @@ export class UsuariosComponent implements OnInit {
   especialistas:any = [];
   admins:any = [];
   historias:any = [];
+  turnos:any = [];
 
   constructor(private dataStorage:DataStorageServiceService) { }
 
@@ -45,7 +46,9 @@ export class UsuariosComponent implements OnInit {
           else this.admins.push(user);
         });
       }
-    )   
+
+      )   
+      this.dataStorage.GetTurnosAdmin(this.turnos);
   }
 
   MostrarTabla(tabla:string, opcion:boolean){
@@ -104,16 +107,15 @@ export class UsuariosComponent implements OnInit {
       data.push(user);
     })
 
-    /* generate a worksheet */
     var ws = XLSX.utils.json_to_sheet(data);
   
-    /* add to workbook */
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Usuarios");
   
-    /* write workbook and force a download */
-      XLSX.writeFile(wb, "Usuarios.xlsx");
+    XLSX.writeFile(wb, "Usuarios.xlsx");
   }
+
+
 
   ActualizarHabilitacion(especialista:string, habilitacion:boolean){
     this.dataStorage.CambiarHabilitacion(especialista, habilitacion)
@@ -123,5 +125,31 @@ export class UsuariosComponent implements OnInit {
     this.historias = [];
     this.dataStorage.GetHistoriasPorPaciente(mail, this.historias);
     this.historiasView = true;
+  }
+
+  DescargarXLSXporPaciente(mail:string){
+
+    let data:any = [];
+
+    if(this.turnos != undefined) { 
+      this.turnos.forEach((element:any) => {
+        if(element.paciente == mail){
+          data.push({
+            "especialidad":element.especialidad,
+            "especialista":element.especialista,
+            "fecha":element.fecha.toLocaleString(),
+            "estado":element.estado,
+          })
+        }
+      });
+
+      var ws = XLSX.utils.json_to_sheet(data);
+    
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, mail);
+    
+      XLSX.writeFile(wb, "turnos-" + mail + ".xlsx");
+  
+    }
   }
 }
